@@ -42,14 +42,27 @@ const sms = Twilio({
 
 })
 
-const test = async () => {
+const test1 = async () => {
+
+  const template = {
+      body:'Hello {{name}}'
+    , subs: { name: 'batman' } 
+  }
+
+  const result = await sms.send(template, '+33608022073')
+  console.log('[sms] result', result)
+  assert(result.response.sid, 'no sid returned')
+  assert(result.response.status == 'queued')
+}
+
+const test2 = async () => {
   const result = await sms.template('signup:fr', '+33608022073', { name: 'batman' })
   console.log('[sms] result', result)
   assert(result.response.sid, 'no sid returned')
   assert(result.response.status == 'queued')
 }
 
-test()
+test1()
 setTimeout(()=>{}, 3000)
 
 

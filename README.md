@@ -53,7 +53,10 @@ const sms = Twilio({
 Once you initiated your sms handler, sending a text is as easy as:
 
 ```js
-const result = await sms.send('signup', '+33608022073', { name: 'batman' })
+// using predefined template
+const result = await sms.template('signup:fr', '+33608022073', { name: 'batman' })
+// raw
+const result = await sms.send({ body: 'Hello {{name}' }, '+33608022073', { name: 'batman' })
 ```
 
 ## info

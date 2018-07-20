@@ -14,8 +14,8 @@ export default options => {
     options.creds.token
   )
   
-  const handler = async (template, to, subs, { renderKeys }) => {
-    subs = template.subs || subs // merge additonal subs from initTemplate()
+  const handler = async (template, to, subs={}, { renderKeys }) => {
+    subs = { ...(template.subs||{}), ...subs } // overide template subs
 
     // interpolate some template keys
     template = { ...template, ...renderKeys(template, subs, ['body']) }
@@ -46,7 +46,7 @@ export default options => {
 
     // logs
     const meta = {
-        tpl: `${subs._tpl && subs._tpl.key}`
+        tpl: `${(subs._tpl && subs._tpl.key)||'not set'}`
       , text: template.body
       , mock: !!options.mock
       , tos: tos

@@ -1,0 +1,25 @@
+{
+  "name": "uteel-twilio",
+  "version": "1.0.0",
+  "description": "twilio sender",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "babel-node test/index",
+    "build": "babel source -d dist",
+    "prepare": "npm run build"
+  },
+  "author": "Louis Grellet <as1cron@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "libphonenumber-js": "^1.2.21",
+    "twilio": "^3.18.0",
+    "uteel-sender": "^1.0.5"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "chai": "^4.1.0"
+  }
+}

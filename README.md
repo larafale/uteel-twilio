@@ -1,3 +1,4 @@
+# Twilio sender
 
 ## Usage
 
@@ -50,6 +51,7 @@ const sms = Twilio({
 
 
 Once you initiated your sms handler, sending a text is as easy as:
+
 ```js
 const result = await sms.send('signup', '+33608022073', { name: 'batman' })
 ```
@@ -57,3 +59,16 @@ const result = await sms.send('signup', '+33608022073', { name: 'batman' })
 ## info
 
 - Append a dot "." at the end of an url in order to disable link preview in sms app (ios for exemple)
+
+
+
+## Test numbers
+
+How To Use Twilio Test Credentials with Magic Phone Numbers
+Magic Phone Number  Description Error Code
+
+```
++15005550000  This phone number is unavailable. 21422
++15005550001  This phone number is invalid. 21421
++15005550006  This phone number is valid and available. No error
+```

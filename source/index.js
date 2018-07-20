@@ -8,6 +8,7 @@ import { decodeHTMLEntities } from './utils'
 
 export default options => {
 
+
   const $twilio = new Twilio(
     options.creds.sid, 
     options.creds.token
@@ -67,7 +68,6 @@ export default options => {
 
 
     const catchError = err => {
-      console.log('[err:twilio]', err)
       ctx.error = true
       ctx.response = err
       return ctx
@@ -102,8 +102,8 @@ export default options => {
     try {
       const [key, lang] = name.split(':')
 
+      // if( string thn it's a url)
       const template = (typeof options.templates == 'string'
-        // if( string thn it's a url)
         ? (await fetchJson(options.templates))
         : options.templates
       )[key][lang]

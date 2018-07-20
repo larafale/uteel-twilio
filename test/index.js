@@ -1,18 +1,19 @@
 import Twilio from '../source'
-  console.log('oo', process.env.NODE_ENV)
+import assert from 'assert'
+
 
 const sms = Twilio({
 
   // twilio credentials
     creds: {
-        sid: process.env.TWILIO_SID||'ii'
-      , token: process.env.TWILIO_TOKEN||'oo'
+        sid: process.env.TWILIO_SID||'AC112a94fceab3288fd5d91a95629ce679'
+      , token: process.env.TWILIO_TOKEN||'649df7667f93e67f0a13192246dc3156'
     }
 
   // depending on countries, alphanumeric senders are not supported (eg: us)
   , senders: {
-        'fr': 'Acme Corp'
-      , 'us': '+14152026692'
+        'fr': '+15005550006' // twilio test number
+      // , 'us': '+14152026692'
     }
 
   // templates can also be an url to fetch from
@@ -36,20 +37,20 @@ const sms = Twilio({
 
   // transform sms message before sending
   , transform: msg => {
-      return process.env.NODE_ENV != 'production' 
-        ? `[${process.env.NODE_ENV}] ${msg}` 
-        : msg
+      return `[npm test] ${msg}`
     }
 
 })
 
 const test = async () => {
-  // const location1 = await geocode('1060 West Addison Street')
-  // const location2 = await geocode('43.5262719, 5.4484675')
-  
+  const result = await sms.template('signup:fr', '+33608022073', { name: 'batman' })
+  console.log('[sms] result', result)
+  assert(result.response.sid, 'no sid returned')
+  assert(result.response.status == 'queued')
 }
 
 test()
+setTimeout(()=>{}, 3000)
 
 
 
